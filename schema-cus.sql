@@ -911,18 +911,6 @@ CREATE SEQUENCE public.industries_id_seq
 
 ALTER SEQUENCE public.industries_id_seq OWNED BY public.industries.id;
 
-
---
--- Name: languages; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.languages (
-    code character varying(255) NOT NULL,
-    name character varying(255),
-    direction character varying(255) DEFAULT 'ltr'::character varying
-);
-
-
 --
 -- Name: legal_framework; Type: TABLE; Schema: public; Owner: -
 --
@@ -1706,36 +1694,6 @@ CREATE SEQUENCE public.places_id_seq
 
 ALTER SEQUENCE public.places_id_seq OWNED BY public.places.id;
 
-
---
--- Name: priority; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.priority (
-    id integer NOT NULL,
-    priority character varying(255)
-);
-
-
---
--- Name: priority_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.priority_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: priority_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.priority_id_seq OWNED BY public.priority.id;
-
 --
 -- Name: requirements; Type: TABLE; Schema: public; Owner: -
 --
@@ -1771,26 +1729,6 @@ CREATE SEQUENCE public.requirements_id_seq
 --
 
 ALTER SEQUENCE public.requirements_id_seq OWNED BY public.requirements.id;
-
-
---
--- Name: revision_requests; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.revision_requests (
-    id integer NOT NULL,
-    user_created uuid,
-    date_created timestamp with time zone,
-    user_updated uuid,
-    date_updated timestamp with time zone,
-    status_id integer DEFAULT 2,
-    priority_id integer DEFAULT 1,
-    change_request_type_id integer,
-    service_id integer,
-    description text,
-    comments text
-);
-
 
 --
 -- Name: schedule_types; Type: TABLE; Schema: public; Owner: -
@@ -2789,14 +2727,6 @@ ALTER TABLE ONLY public.place_types ALTER COLUMN id SET DEFAULT nextval('public.
 
 ALTER TABLE ONLY public.places ALTER COLUMN id SET DEFAULT nextval('public.places_id_seq'::regclass);
 
-
---
--- Name: priority id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.priority ALTER COLUMN id SET DEFAULT nextval('public.priority_id_seq'::regclass);
-
-
 --
 -- Name: requirements id; Type: DEFAULT; Schema: public; Owner: -
 --
@@ -3183,15 +3113,6 @@ ALTER TABLE ONLY public.help_channel
 ALTER TABLE ONLY public.industries
     ADD CONSTRAINT industries_pkey PRIMARY KEY (id);
 
-
---
--- Name: languages languages_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.languages
-    ADD CONSTRAINT languages_pkey PRIMARY KEY (code);
-
-
 --
 -- Name: legal_framework legal_framework_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
@@ -3374,14 +3295,6 @@ ALTER TABLE ONLY public.place_types
 
 ALTER TABLE ONLY public.places
     ADD CONSTRAINT places_pkey PRIMARY KEY (id);
-
-
---
--- Name: priority priority_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.priority
-    ADD CONSTRAINT priority_pkey PRIMARY KEY (id);
 
 --
 -- Name: requirements requirements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
